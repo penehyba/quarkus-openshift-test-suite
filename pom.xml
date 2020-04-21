@@ -17,21 +17,23 @@
         <module>common</module>
 
         <module>http</module>
-        <module>configmap</module>
-        <module>sql-db/app</module>
-        <module>sql-db/postgresql</module>
-        <module>sql-db/mysql</module>
-        <module>sql-db/mariadb</module>
-        <module>sql-db/mssql</module>
+<!--        <module>configmap</module>-->
+        <module>openshift-extension</module>
+<!--        TODO PN don't forget to uncomment all -->
+<!--        <module>sql-db/app</module>-->
+<!--        <module>sql-db/postgresql</module>-->
+<!--        <module>sql-db/mysql</module>-->
+<!--        <module>sql-db/mariadb</module>-->
+<!--        <module>sql-db/mssql</module>-->
         <module>security/basic</module>
-        <module>security/jwt</module>
-        <module>security/keycloak</module>
-        <module>security/keycloak-authz</module>
-        <module>security/https-1way</module>
-        <module>security/https-2way</module>
-        <module>microprofile</module>
+<!--        <module>security/jwt</module>-->
+<!--        <module>security/keycloak</module>-->
+<!--        <module>security/keycloak-authz</module>-->
+<!--        <module>security/https-1way</module>-->
+<!--        <module>security/https-2way</module>-->
+<!--        <module>microprofile</module>-->
 
-        <module>todo-demo-app</module>
+        <!--        <module>todo-demo-app</module>-->
     </modules>
 
     <properties>
