@@ -1,8 +1,12 @@
 package org.acme.getting.started;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -18,9 +22,7 @@ import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.when;
 import static org.awaitility.Awaitility.await;
-import static org.hamcrest.CoreMatchers.equalTo;
 
 @QuarkusTest
 public class ExtensionTest {
@@ -95,20 +97,20 @@ public class ExtensionTest {
         String url = "http://" + oc.routes().withName(APP).get().getSpec().getHost() + "/hello";
         new Command("curl", url).runAndWait();
         await().atMost(5, TimeUnit.MINUTES).untilAsserted(() -> {
-//            try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(url).openStream()))) {
-//                for (String line; (line = reader.readLine()) != null; ) {
-//                    final String expected = before ? "hello before" : "hello after";
-//                    Assertions.assertEquals(expected,
-//                                            line,
-//                                            "Response should contain one row message '" + expected + "'");
-//                }
-//            }
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(url).openStream()))) {
+                for (String line; (line = reader.readLine()) != null; ) {
+                    final String expected = before ? "hello before" : "hello after";
+                    Assertions.assertEquals(expected,
+                                            line,
+                                            "Response should contain one row message '" + expected + "'");
+                }
+            }
 //            given() // TODO feel free to make this work
-                    when()
-                    .get(url)
-                    .then()
-                    .statusCode(200)
-                    .body(equalTo(before ? "hello before" : "hello after"));
+//                    when()
+//                    .get(url)
+//                    .then()
+//                    .statusCode(200)
+//                    .body(equalTo(before ? "hello before" : "hello after"));
         });
         System.out.println(before ? "BEFORE ENDS" : "AFTER ENDS");
     }
