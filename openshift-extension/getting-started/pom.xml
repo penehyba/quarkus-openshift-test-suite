@@ -38,11 +38,12 @@
       <artifactId>quarkus-junit5</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>io.rest-assured</groupId>
-      <artifactId>rest-assured</artifactId>
-      <scope>test</scope>
-    </dependency> <!-- place where dependency to openshift-extension should appear below: -->
+<!--    <dependency>-->
+<!--      <groupId>io.rest-assured</groupId>-->
+<!--      <artifactId>rest-assured</artifactId>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency> -->
+  <!-- place where dependency to openshift-extension should appear below: -->
 
   </dependencies>
   <build>

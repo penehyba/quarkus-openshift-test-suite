@@ -88,7 +88,7 @@ public class ExtensionTest {
                     "-f", PATH_APP_POM,
                     "-Dquarkus.kubernetes.deploy=true",
                     "-Dquarkus.openshift.deploy=true",
-                    "-Dversion.quarkus=" + System.getProperty("version.quarkus"), // TODO tohle se nacte odkud?
+                    "-Dversion.quarkus=" + System.getProperty("version.quarkus"),
                     "-DskipTests",
                     "-DskipITs").runAndWait();
 
