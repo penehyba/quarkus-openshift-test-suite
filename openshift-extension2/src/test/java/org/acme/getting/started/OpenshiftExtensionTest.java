@@ -51,6 +51,7 @@ public class OpenshiftExtensionTest {
         new MyCommand("mkdir", "./generated").runAndWait();
 //        new MyCommand("cd", "./generated").runAndWait();
         new MyCommand("cp" ,"./mvnw*", "./generated/").runAndWait();
+        new MyCommand("ls").runAndWait();
         new MyCommand("pwd").runAndWait();
         new MyCommand(MVNW, "clean", "io.quarkus:quarkus-maven-plugin:1.4.1.Final:create",
                       "-DprojectGroupId=org.acme",
