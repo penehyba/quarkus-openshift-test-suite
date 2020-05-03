@@ -53,7 +53,8 @@ public class OpenshiftExtensionTest {
                       "-DprojectGroupId=org.acme",
                       "-DprojectArtifactId=getting-started",
                       "-DclassName=\"org.acme.getting.started.GreetingResource\"",
-                      "-Dpath=\"/hello\"").runAndWait();
+                      "-Dpath=\"/hello\"",
+                      "-Dbasedir=\"../generated\"").runAndWait();
 //        new MyCommand("cd", "getting-started").runAndWait();
 //        new MyCommand("./mvnw", "clean", "compile", "quarkus:dev").runAndWait();
 //        new MyCommand("curl", "-w", "\"\\n\"", "http://localhost:8080/hello").runAndWait();
