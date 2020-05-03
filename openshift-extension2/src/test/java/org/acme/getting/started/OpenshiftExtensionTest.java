@@ -28,13 +28,15 @@ import static org.awaitility.Awaitility.await;
 public class OpenshiftExtensionTest {
     private static final String APP = "getting-started";
 
-    private static final String PATH_APP = APP + "/";
+    private static final String PATH_APP = "./generated/" + APP + "/";
 
     private static final String PATH_APP_RESOURCE2CHANGE = PATH_APP + "src/main/java/org/acme/getting/started/GreetingResource.java";
 
     private static final String PATH_APP_POM = PATH_APP + "pom.xml";
 
     private static final String PATH_APP_PROPERTIES = PATH_APP + "src/main/resources/application.properties";
+
+    private static final String MVNW = "./generated/mvnw";
 
     private List<String> properties = Collections.unmodifiableList(
             Arrays.asList(
@@ -46,10 +48,11 @@ public class OpenshiftExtensionTest {
     @Test
     public void checkAddExtension_QuarkusOpenshift() throws IOException, InterruptedException {
         new MyCommand("pwd").runAndWait();
-        new MyCommand("mkdir", "../generated").runAndWait();
-        new MyCommand("cd", "../generated").runAndWait();
+        new MyCommand("mkdir", "./generated").runAndWait();
+//        new MyCommand("cd", "./generated").runAndWait();
+        new MyCommand("cp" ,"./mvnw*", "./generated/").runAndWait();
         new MyCommand("pwd").runAndWait();
-        new MyCommand("mvn", "clean", "io.quarkus:quarkus-maven-plugin:1.4.1.Final:create",
+        new MyCommand(MVNW, "clean", "io.quarkus:quarkus-maven-plugin:1.4.1.Final:create",
                       "-DprojectGroupId=org.acme",
                       "-DprojectArtifactId=getting-started",
                       "-DclassName=\"org.acme.getting.started.GreetingResource\"",
@@ -77,7 +80,7 @@ public class OpenshiftExtensionTest {
         final OpenShiftClientRsource openShiftClientResource = OpenShiftClientRsource.createDefault();
         final OpenShiftClient oc = openShiftClientResource.client;
         // apply 'quarkus-openshift' extension and create application.properties
-        new MyCommand("./mvnw", "quarkus:add-extension",
+        new MyCommand(MVNW, "quarkus:add-extension",
                       "-Dversion.quarkus=" + System.getProperty("version.quarkus"),
                       "-Dextensions=openshift", "-f", PATH_APP_POM).runAndWait();
         createApplicationProperties(PATH_APP_PROPERTIES, properties);
@@ -103,8 +106,8 @@ public class OpenshiftExtensionTest {
     private void runAppAndVerify(boolean before, OpenShiftClient oc, String projectName) throws
             IOException, InterruptedException {
         System.out.println(before ? "BEFORE STARTS" : "AFTER STARTS");
-        new MyCommand("./mvnw", "clean", "dependency:tree", "package",
-                      "-f", PATH_APP_POM,
+        new MyCommand(MVNW, "clean", "dependency:tree", "package",
+//                      "-f", PATH_APP_POM,
                       "-Dquarkus.kubernetes.deploy=true",
                       "-Dquarkus.openshift.deploy=true",
                       "-Dversion.quarkus=" + System.getProperty("version.quarkus"),
