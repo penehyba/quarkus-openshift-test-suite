@@ -18,6 +18,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>io.quarkus.ts.openshift</groupId>
+            <artifactId>app-metadata</artifactId>
+        </dependency>
+        <dependency>
             <groupId>io.fabric8</groupId>
             <artifactId>openshift-client</artifactId>
         </dependency>
