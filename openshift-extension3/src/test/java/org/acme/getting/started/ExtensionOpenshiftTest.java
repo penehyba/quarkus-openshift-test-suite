@@ -72,7 +72,7 @@ public class ExtensionOpenshiftTest {
         // pom has no 'quarkus-openshift' dependency, application.properties does not exist and the app is 'getting-started'
         Assertions.assertFalse(fileContainsKey(PATH_APP_POM, "quarkus-openshift"));
         Assertions.assertFalse(new File(PATH_APP_PROPERTIES).exists());
-        Assertions.assertTrue(fileContainsKey(PATH_APP_POM, "<artifactId>" + APP + "</artifactId>"));
+//        Assertions.assertTrue(fileContainsKey(PATH_APP_POM, "<artifactId>" + APP + "</artifactId>"));
 //
         final String projectName = ThreadLocalRandom.current()
                 .ints(10, 'a', 'z' + 1)
