@@ -5,12 +5,13 @@ items:
   kind: Service
   metadata:
     labels:
+      alfa: beta1
       expose: "true"
       app: infinispan-client-test
     name: infinispan-client-test
   spec:
     ports:
-      - port: 11222
+      - port: 8081
         targetPort: 11222
     selector:
       app: infinispan-client-test
@@ -25,10 +26,13 @@ items:
   metadata:
     labels:
       app: infinispan-client-test
+      alfa: beta2
     name: infinispan-client-test
+    app.kubernetes.io/name: infinispan-client-test
   spec:
+    path: /
     port:
-      targetPort: 8080
+      targetPort: 8081
     to:
       kind: Service
       name: infinispan-client-test
