@@ -4,12 +4,16 @@ items:
 - apiVersion: v1
   kind: Service
   metadata:
+    labels:
+      expose: "true"
+      app: infinispan-client-test
     name: infinispan-client-test
-    namespace: mstary
   spec:
     ports:
       - port: 11222
         targetPort: 11222
+    selector:
+      app: infinispan-client-test
     tags:
       - name: latest
         from:
@@ -19,9 +23,12 @@ items:
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
+    labels:
+      app: infinispan-client-test
     name: infinispan-client-test
-    namespace: mstary
   spec:
+    port:
+      targetPort: 8080
     to:
       kind: Service
       name: infinispan-client-test

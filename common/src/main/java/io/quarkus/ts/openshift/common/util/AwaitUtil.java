@@ -34,6 +34,7 @@ public final class AwaitUtil {
     }
 
     public void awaitAppRoute() {
+        System.out.println("XX awaiting app route, metadata:\n" + metadata);
         System.out.println(ansi().a("waiting for route ").fgYellow().a(metadata.appName).reset()
                 .a(" to start responding at ").fgYellow().a(metadata.knownEndpoint).reset());
         await().atMost(5, TimeUnit.MINUTES).untilAsserted(() -> {
