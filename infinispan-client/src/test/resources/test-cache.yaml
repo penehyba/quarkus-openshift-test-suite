@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: infinispan-client-test
+    namespace: mstary
+  spec:
+    ports:
+      - port: 11222
+        targetPort: 11222
+    tags:
+      - name: latest
+        from:
+          kind: DatagridImage
+          name: registry.access.redhat.com/jboss-datagrid-7/datagrid73-openshift #registry.redhat.io/datagrid/datagrid-8-rhel8
+
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    name: infinispan-client-test
+    namespace: mstary
+  spec:
+    to:
+      kind: Service
+      name: infinispan-client-test
+    expose:
+      type: Route
